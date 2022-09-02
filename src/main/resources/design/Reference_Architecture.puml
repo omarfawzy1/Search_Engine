@@ -1,0 +1,39 @@
+@startuml
+
+note "Rich Internet  Architecture" as N1
+
+component SearchEngine {
+    top to bottom direction
+
+    component SearchBar
+
+    component SearchEngineServiceLayer {
+        component RestControllers
+        component JsonConverter
+     }
+    component BusinessLogicLayer {
+        component Service
+        component ValidationUnit
+    }
+    component DataLayer  {
+        component DAO
+        component Entity
+        component Repository
+        }
+
+'    component Infrastructure
+'    component ExternalServiceProxyManager
+    database RDBMS
+    HTTPS - SearchEngineServiceLayer
+    SearchBar  -( HTTPS
+    SearchEngineServiceLayer --> BusinessLogicLayer
+    BusinessLogicLayer --> DataLayer
+    DataLayer -> RDBMS
+'    Infrastructure <--> RDBMS
+'    Infrastructure <--> ExternalServiceProxyManager
+'    SearchEngineBusinessLogic --> Infrastructure
+}
+
+
+
+@enduml
