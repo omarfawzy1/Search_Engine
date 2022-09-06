@@ -17,7 +17,6 @@ public class QueryParserTest {
         //Arrange
         ParsingService parsingService = new ParsingService();
         //Act
-        String validSearchQuery = "PO with Code = 20220001";
         SearchField searchField = parsingService.getSearchField(validSearchQuery);
         //Assert
         Assertions.assertEquals("PO",searchField.getType());
@@ -28,8 +27,11 @@ public class QueryParserTest {
     @DisplayName("should throw exception when  invalid search type when you enter invalid query")
     void shouldThrowExceptionWhenInValidSearchType() {
         //Arrange
+
         //Act
+
         //assert
+
         //CleanUp
     }
 
@@ -37,49 +39,48 @@ public class QueryParserTest {
     @DisplayName("should extract valid search filter when you enter valid query")
     public void shouldExtractValidSearchBy() {
         //Arrange
-
+        ParsingService parsingService = new ParsingService();
         //Act
-
-        //Assert
-
-        //Clean Up
+        SearchField resultSearchField = parsingService.getSearchField(validSearchQuery);
+        //assert
+        Assertions.assertEquals("Code", resultSearchField.getField());
+        //CleanUp
     }
 
     @Test
     @DisplayName("should extract valid search operator when you enter valid query")
     public void shouldExtractValidSearchOperator() {
         //Arrange
+        ParsingService parsingService = new ParsingService();
         //Act
-
-        //Assert
-        //Clean Up
+        SearchField resultSearchField = parsingService.getSearchField(validSearchQuery);
+        //assert
+        Assertions.assertEquals("=", resultSearchField.getOperator());
+        //CleanUp
     }
 
     @Test
-    @DisplayName("should extract valid search code when you enter valid query")
+    @DisplayName("should extract valid search value when you enter valid query")
     public void shouldExtractValidSearchCode() {
         //Arrange
+        ParsingService parsingService = new ParsingService();
         //Act
-        //Assert
-        //Clean Up
+        SearchField resultSearchField = parsingService.getSearchField(validSearchQuery);
+        //assert
+        Assertions.assertEquals("20220001", resultSearchField.getValue());
+        //CleanUp
     }
 
     @Test
     @DisplayName("should extract all valid search fields when you enter valid query")
     public void shouldExtractAllValidFields() {
         //Arrange
+
         //Act
+
         //Assert
+
         //Clean Up
     }
-    /*
-
-
-        Searchf
-        Search controller  ( quer )
-        Search service query -----> parsing service
-                        <----- serchf
-        Data Layer
-     */
 
 }
