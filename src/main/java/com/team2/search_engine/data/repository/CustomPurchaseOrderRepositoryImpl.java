@@ -3,6 +3,7 @@ package com.team2.search_engine.data.repository;
 
 
 import com.team2.search_engine.data.entity.PurchaseOrder;
+import com.team2.search_engine.logic.SearchField;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -13,24 +14,41 @@ import java.util.List;
 public class CustomPurchaseOrderRepositoryImpl implements CustomPurchaseOrderRepository {
     @PersistenceContext
     private EntityManager entityManager;
-
+//
+//    @Override
+//    public List<PurchaseOrder> findPOExact(String type, String value) {
+//        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+//        CriteriaQuery<PurchaseOrder> query = cb.createQuery(PurchaseOrder.class);
+//        Root<PurchaseOrder> po = query.from(PurchaseOrder.class);
+//
+//        query.select(po).where(cb.equal(po.get(type),value));
+//
+//        return entityManager.createQuery(query).getResultList();
+//    }
+//    @Override
+//    public List<PurchaseOrder> findPOLike(String type, String value) {
+//        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+//        CriteriaQuery<PurchaseOrder> query = cb.createQuery(PurchaseOrder.class);
+//        Root<PurchaseOrder> po = query.from(PurchaseOrder.class);
+//        query.select(po).where(cb.like(po.get(type),"%"+value+"%"));
+//
+//        return entityManager.createQuery(query).getResultList();
+//    }
     @Override
-    public List<PurchaseOrder> findPOExact(String type, String value) {
+    public List<Object> find(SearchField searchField){
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<PurchaseOrder> query = cb.createQuery(PurchaseOrder.class);
-        Root<PurchaseOrder> po = query.from(PurchaseOrder.class);
-
-        query.select(po).where(cb.equal(po.get(type),value));
-
-        return entityManager.createQuery(query).getResultList();
-    }
-    @Override
-    public List<PurchaseOrder> findPOLike(String type, String value) {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<PurchaseOrder> query = cb.createQuery(PurchaseOrder.class);
-        Root<PurchaseOrder> po = query.from(PurchaseOrder.class);
-        query.select(po).where(cb.like(po.get(type),"%"+value+"%"));
-
+        CriteriaQuery<Object> query = cb.createQuery(searchField.getType());
+        Root<Object> results = query.from(searchField.getType());
+        query.select(results);
+        String operator = searchField.getOperator();
+        Path field = results.get(searchField.getField());
+        String value = searchField.getValue();
+        if(operator.equals("=")){
+            query.where(cb.equal(field,value));
+        }
+        else if(operator.equals("~")){
+            query.where(cb.like(field,"%"+value+"%"));
+        }
         return entityManager.createQuery(query).getResultList();
     }
 }

@@ -2,6 +2,7 @@ package com.team2.search_engine.service;
 
 import com.team2.search_engine.data.entity.PurchaseOrder;
 import com.team2.search_engine.data.repository.SearchRepository;
+import com.team2.search_engine.logic.SearchField;
 import com.team2.search_engine.logic.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,25 +24,7 @@ public class SearchController {
     @Autowired
     private SearchRepository cor;
 
-
-
-    @GetMapping("/man")
-    public String getBook(String searchInput) {
-        System.err.println("get book called with" + searchInput);
-        return null;
-    }
-
-    @GetMapping("/SearchForPOwithExact")
-    public List<PurchaseOrder> getPOwithExact(@RequestParam(name = "type") String type, @RequestParam(name = "value") String value){
-        return cor.findPOExact(type,value);
-    }
-
-    @GetMapping("/SearchForPOwithLike")
-    public List<PurchaseOrder> getPOwithLike(@RequestParam(name = "type") String type, @RequestParam(name = "value") String value){
-        return cor.findPOLike(type,value);
-    }
-
-    @GetMapping("")
+    @GetMapping("/")
     public String max(){
         return "hi";
     }
@@ -51,4 +34,11 @@ public class SearchController {
         System.err.println("get test called");
         return "2002020202";
     }
+
+    @GetMapping("/GeneralFind")
+    public List<Object> getPOwithLike(@RequestParam(name = "type") String type,@RequestParam(name = "field") String field, @RequestParam(name = "opreator") String opreator,@RequestParam(name = "value") String value){
+        SearchField f = new SearchField(PurchaseOrder.class,field,opreator,value);
+        return cor.find(f);
+    }
+
 }
