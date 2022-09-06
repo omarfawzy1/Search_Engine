@@ -1,13 +1,13 @@
 package com.team2.search_engine.service;
 
-import com.team2.search_engine.logic.SearchService;
+import com.team2.search_engine.logic.ParsingService;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SearchController {
-    private SearchService searchService;
+    private ParsingService searchService;
 
-    public SearchController(SearchService searchService) {
+    public SearchController(ParsingService searchService) {
         this.searchService = searchService;
     }
 }

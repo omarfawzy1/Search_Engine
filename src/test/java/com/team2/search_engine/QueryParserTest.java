@@ -1,5 +1,7 @@
 package com.team2.search_engine;
 
+import com.team2.search_engine.logic.ParsingService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +14,10 @@ public class QueryParserTest {
     @DisplayName("should extract valid search type when you enter valid query")
     void shouldExtractValidSearchType() {
         //Arrange
+        ParsingService parsingService = new ParsingService();
         //Act
+        String validSearchQuery = "PO with Code = 20220001";
+        parsingService.getSearchField(validSearchQuery);
         //Assert
         //CleanUp
     }

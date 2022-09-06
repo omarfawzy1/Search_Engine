@@ -4,21 +4,21 @@ import com.team2.search_engine.data.repository.SearchRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SearchService {
+public class ParsingService {
     private SearchRepository searchRepository ;
-    public SearchService(SearchRepository searchRepository) {
+    public ParsingService(SearchRepository searchRepository) {
 
         this.searchRepository = searchRepository;
 
 
     }
 
-    public SearchField Parse(String msg){
+    public ParsingService() {
+    }
 
-        Class type;
-        String field,operator, value;
+    public SearchField getSearchField(String msg){
 
-        SearchField searchField = new SearchField(type, field, operator, value);
+        SearchField searchField = new SearchField("PO", "Code", "=", "20220001");
 
         return searchField;
     }
