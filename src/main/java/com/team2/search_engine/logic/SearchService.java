@@ -6,8 +6,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class SearchService {
     private SearchRepository searchRepository ;
-
     public SearchService(SearchRepository searchRepository) {
+
         this.searchRepository = searchRepository;
+
+
     }
+
+    public SearchField Parse(String msg){
+
+        Class type;
+        String field,operator, value;
+
+        SearchField searchField = new SearchField(type, field, operator, value);
+
+        return searchField;
+    }
+
 }
