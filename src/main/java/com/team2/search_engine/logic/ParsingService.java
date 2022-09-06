@@ -19,7 +19,7 @@ public class ParsingService {
     public ParsingService() {
     }
 
-    public SearchField getSearchField(String query){
+    public SearchField parseQuery(String query){ // can make this function static
 //       validSearchQuery = "PO with Code = 20220001";
         //Lexer
         searchGrammarLexer  searchGrammarLexer  = new searchGrammarLexer(CharStreams.fromString(query));
@@ -27,10 +27,15 @@ public class ParsingService {
         CommonTokenStream tokenStream = new CommonTokenStream(searchGrammarLexer);
         //Build Parser
         searchGrammarParser searchGrammarParser = new searchGrammarParser(tokenStream);
-        ParseTreeWalker walker = new ParseTreeWalker();
         SearchListener searchListener = new SearchListener();
-        walker.walk(searchListener,searchGrammarParser.search());
-        return searchListener.getCurrentSearchField();
+
+        walkOnParseTree(searchGrammarParser, searchListener);
+        SearchField parsedQuery = searchListener.getSearchField();
+        return parsedQuery;
     }
 
+    private void walkOnParseTree(searchGrammarParser searchGrammarParser, SearchListener searchListener) {
+        ParseTreeWalker walker = new ParseTreeWalker();
+        walker.walk(searchListener, searchGrammarParser.search());
+    }
 }

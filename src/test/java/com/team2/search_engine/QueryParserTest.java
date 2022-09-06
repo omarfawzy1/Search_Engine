@@ -1,6 +1,7 @@
 package com.team2.search_engine;
 
 import com.team2.search_engine.logic.ParsingService;
+import com.team2.search_engine.logic.Purchase_Order;
 import com.team2.search_engine.logic.SearchField;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -17,9 +18,9 @@ public class QueryParserTest {
         //Arrange
         ParsingService parsingService = new ParsingService();
         //Act
-        SearchField searchField = parsingService.getSearchField(validSearchQuery);
+        SearchField searchField = parsingService.parseQuery(validSearchQuery);
         //Assert
-        Assertions.assertEquals("PO",searchField.getType());
+        Assertions.assertEquals(new Purchase_Order().getClass(),searchField.getType());
         //CleanUp
     }
 
@@ -41,7 +42,7 @@ public class QueryParserTest {
         //Arrange
         ParsingService parsingService = new ParsingService();
         //Act
-        SearchField resultSearchField = parsingService.getSearchField(validSearchQuery);
+        SearchField resultSearchField = parsingService.parseQuery(validSearchQuery);
         //assert
         Assertions.assertEquals("Code", resultSearchField.getField());
         //CleanUp
@@ -53,7 +54,7 @@ public class QueryParserTest {
         //Arrange
         ParsingService parsingService = new ParsingService();
         //Act
-        SearchField resultSearchField = parsingService.getSearchField(validSearchQuery);
+        SearchField resultSearchField = parsingService.parseQuery(validSearchQuery);
         //assert
         Assertions.assertEquals("=", resultSearchField.getOperator());
         //CleanUp
@@ -65,7 +66,7 @@ public class QueryParserTest {
         //Arrange
         ParsingService parsingService = new ParsingService();
         //Act
-        SearchField resultSearchField = parsingService.getSearchField(validSearchQuery);
+        SearchField resultSearchField = parsingService.parseQuery(validSearchQuery);
         //assert
         Assertions.assertEquals("20220001", resultSearchField.getValue());
         //CleanUp

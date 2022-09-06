@@ -8,13 +8,12 @@ import java.util.List;
 public class SearchListener extends searchGrammarBaseListener {
     private static final int
             TYPE = 0, FIELD = 2, OPERATOR = 3, VALUE = 4;
-    private SearchField currentSearchField;
-    private List<SearchField> searchList = new ArrayList<>();
+    private SearchField searchField;
 
     @Override
     public void enterSearch(searchGrammarParser.SearchContext ctx) {
         super.enterSearch(ctx);
-        currentSearchField = new SearchField(
+        searchField = new SearchField(
                 ctx.getChild(TYPE).getText(),
                 ctx.getChild(FIELD).getText(),
                 ctx.getChild(OPERATOR).getText(),
@@ -25,22 +24,14 @@ public class SearchListener extends searchGrammarBaseListener {
     @Override
     public void exitSearch(searchGrammarParser.SearchContext ctx) {
         super.exitSearch(ctx);
-        searchList.add(currentSearchField);
     }
 
-    public SearchField getCurrentSearchField() {
-        return currentSearchField;
+    public SearchField getSearchField() {
+        return searchField;
     }
 
     public void setCurrentSearch(SearchField currentSearch) {
-        this.currentSearchField = currentSearch;
+        this.searchField = currentSearch;
     }
-
-    public List<SearchField> getSearchList() {
-        return searchList;
-    }
-
-    public void setSearchList(List<SearchField> searchList) {
-        this.searchList = searchList;
-    }
+    
 }
