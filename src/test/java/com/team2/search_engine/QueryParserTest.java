@@ -1,6 +1,7 @@
 package com.team2.search_engine;
 
 import com.team2.search_engine.logic.ParsingService;
+import com.team2.search_engine.logic.SearchField;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,8 +18,9 @@ public class QueryParserTest {
         ParsingService parsingService = new ParsingService();
         //Act
         String validSearchQuery = "PO with Code = 20220001";
-        parsingService.getSearchField(validSearchQuery);
+        SearchField searchField = parsingService.getSearchField(validSearchQuery);
         //Assert
+        Assertions.assertEquals("PO",searchField.getType());
         //CleanUp
     }
 
@@ -48,6 +50,7 @@ public class QueryParserTest {
     public void shouldExtractValidSearchOperator() {
         //Arrange
         //Act
+
         //Assert
         //Clean Up
     }
@@ -69,5 +72,14 @@ public class QueryParserTest {
         //Assert
         //Clean Up
     }
+    /*
+
+
+        Searchf
+        Search controller  ( quer )
+        Search service query -----> parsing service
+                        <----- serchf
+        Data Layer
+     */
 
 }

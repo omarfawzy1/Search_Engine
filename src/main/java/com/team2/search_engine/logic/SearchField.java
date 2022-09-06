@@ -14,6 +14,11 @@ public class SearchField {
         this.value=value;
     }
 
+    public SearchField() {
+
+    }
+
+
     public String getType(){return this.type;}
     public String getField(){return this.field;}
     public String getOperator(){return this.operator;}
