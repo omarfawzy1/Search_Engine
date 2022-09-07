@@ -1,4 +1,4 @@
-package com.team2.search_engine;
+package com.team2.search_engine.logic;
 
 import com.team2.search_engine.logic.ParsingService;
 import com.team2.search_engine.logic.Purchase_Order;
@@ -45,9 +45,7 @@ public class QueryParserTest {
     @DisplayName("should throw exception when  invalid search type when you enter invalid query")
     void shouldThrowExceptionWhenInValidSearchType() {
         //Act && Assert
-        assertThrows(ParseCancellationException.class, () -> {
-            parsingService.parseQuery(unValidTypeSearchQuery);
-        });
+        assertThrows(ParseCancellationException.class, () -> parsingService.parseQuery(unValidTypeSearchQuery));
         //CleanUp
     }
 
