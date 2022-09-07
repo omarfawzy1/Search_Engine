@@ -1,23 +1,37 @@
 package com.team2.search_engine.logic;
 
-import com.team2.search_engine.data.entity.PurchaseOrder;
-
 // Predicate
 public class SearchField {
-    private Class type; // table
-    private String field; // type
-    private String operator; // operate
-    private String value; // target
+    private final Class<?> type; // table
+    private final String field; // type
+    private final String operator; // operate
+    private final String value; // target
 
-    public SearchField(Class type, String field, String operator, String value){
-        this.type=type;
-        this.field=field;
-        this.operator=operator;
-        this.value=value;
+    public SearchField(String type, String field, String operator, String value) {
+        this.type = determineClassType(type);
+        this.field = field;
+        this.operator = operator;
+        this.value = value;
     }
 
-    public Class getType(){return this.type;}
-    public String getField(){return this.field;}
-    public String getOperator(){return this.operator;}
-    public String getValue(){return this.value;}
+
+    public Class<?> determineClassType(String type) {
+        return  Purchase_Order.class;
+    }
+
+    public Class<?> getType() {
+        return this.type;
+    }
+
+    public String getField() {
+        return this.field;
+    }
+
+    public String getOperator() {
+        return this.operator;
+    }
+
+    public String getValue() {
+        return this.value;
+    }
 }
