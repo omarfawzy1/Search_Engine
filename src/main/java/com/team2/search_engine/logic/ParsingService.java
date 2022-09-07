@@ -1,9 +1,11 @@
 package com.team2.search_engine.logic;
 
+import com.team2.search_engine.data.model.SearchField;
 import com.team2.search_engine.logic.grammar.ParsingErrorListener;
 import com.team2.search_engine.logic.grammar.SearchListener;
 import com.team2.search_engine.logic.grammar.searchGrammarLexer;
 import com.team2.search_engine.logic.grammar.searchGrammarParser;
+
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;

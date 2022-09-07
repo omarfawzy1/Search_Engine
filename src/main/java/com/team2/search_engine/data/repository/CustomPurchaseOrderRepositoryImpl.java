@@ -2,8 +2,7 @@ package com.team2.search_engine.data.repository;
 
 
 
-import com.team2.search_engine.data.entity.PurchaseOrder;
-import com.team2.search_engine.logic.SearchField;
+import com.team2.search_engine.data.model.SearchField;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -37,8 +36,8 @@ public class CustomPurchaseOrderRepositoryImpl implements CustomPurchaseOrderRep
     @Override
     public List<Object> find(SearchField searchField){
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Object> query = cb.createQuery(searchField.getType());
-        Root<Object> results = query.from(searchField.getType());
+        CriteriaQuery<Object> query = cb.createQuery((Class<Object>) searchField.getType());
+        Root<Object> results = query.from((Class<Object>) searchField.getType());
         query.select(results);
         String operator = searchField.getOperator();
         Path field = results.get(searchField.getField());

@@ -1,4 +1,6 @@
-package com.team2.search_engine.logic;
+package com.team2.search_engine.data.model;
+
+import com.team2.search_engine.data.entity.PurchaseOrder;
 
 // Predicate
 public class SearchField {
@@ -16,7 +18,7 @@ public class SearchField {
 
 
     public Class<?> determineClassType(String type) {
-        return  Purchase_Order.class;
+        return PurchaseOrder.class;
     }
 
     public Class<?> getType() {

@@ -1,8 +1,7 @@
 package com.team2.search_engine.logic;
 
-import com.team2.search_engine.logic.ParsingService;
-import com.team2.search_engine.logic.Purchase_Order;
-import com.team2.search_engine.logic.SearchField;
+import com.team2.search_engine.data.entity.PurchaseOrder;
+import com.team2.search_engine.data.model.SearchField;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -37,7 +36,7 @@ public class QueryParserTest {
         //Act
         SearchField searchField = parsingService.parseQuery(validSearchQuery);
         //Assert
-        Assertions.assertEquals(Purchase_Order.class, searchField.getType());
+        Assertions.assertEquals(PurchaseOrder.class, searchField.getType());
         //CleanUp
     }
 
