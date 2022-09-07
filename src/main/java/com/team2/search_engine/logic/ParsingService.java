@@ -1,6 +1,6 @@
 package com.team2.search_engine.logic;
 
-import com.team2.search_engine.data.repository.SearchRepository;
+import com.team2.search_engine.logic.grammar.ParsingErrorListener;
 import com.team2.search_engine.logic.grammar.SearchListener;
 import com.team2.search_engine.logic.grammar.searchGrammarLexer;
 import com.team2.search_engine.logic.grammar.searchGrammarParser;
@@ -11,31 +11,34 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ParsingService {
-    private SearchRepository searchRepository ;
-    public ParsingService(SearchRepository searchRepository) {
-        this.searchRepository = searchRepository;
+    private CommonTokenStream token;
+    private SearchListener searchListener;
+
+    public SearchField parseQuery(String query) {
+        initLaxer(query);
+        initParser();
+        return searchListener.getSearchField();
     }
 
-    public ParsingService() {
+    private void initLaxer(String searchQuery) {
+        //Build Laxer
+        searchGrammarLexer searchGrammarLexer = new searchGrammarLexer();
+        searchGrammarLexer.setInputStream(CharStreams.fromString(searchQuery));
+        //Get Tokens
+        token = new CommonTokenStream(searchGrammarLexer);
     }
 
-    public SearchField parseQuery(String query){ // can make this function static
-//       validSearchQuery = "PO with Code = 20220001";
-        //Lexer
-        searchGrammarLexer  searchGrammarLexer  = new searchGrammarLexer(CharStreams.fromString(query));
-        // Po,with,Code,20220001
-        CommonTokenStream tokenStream = new CommonTokenStream(searchGrammarLexer);
+    private void initParser() {
         //Build Parser
-        searchGrammarParser searchGrammarParser = new searchGrammarParser(tokenStream);
-        SearchListener searchListener = new SearchListener();
-
-        walkOnParseTree(searchGrammarParser, searchListener);
-        SearchField parsedQuery = searchListener.getSearchField();
-        return parsedQuery;
-    }
-
-    private void walkOnParseTree(searchGrammarParser searchGrammarParser, SearchListener searchListener) {
+        searchGrammarParser searchGrammarParser = new searchGrammarParser(token);
+        searchGrammarParser.removeErrorListeners();
+        searchGrammarParser.addErrorListener(ParsingErrorListener.INSTANCE);
+        //Build Parse Tree
         ParseTreeWalker walker = new ParseTreeWalker();
+        //Build Search Listener
+        searchListener = new SearchListener();
+        //start searching
         walker.walk(searchListener, searchGrammarParser.search());
     }
+
 }
