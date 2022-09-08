@@ -85,5 +85,13 @@ public class SearchStepDefinations {
     }
 
 
+    @When("Operator searches for query {string}")
+    public void operatorSearchesForQueryQuery(String searchQuery) throws Exception {
+        result = mvc.perform(get("/api/v1/search").param("query",searchQuery)).andReturn();
+    }
 
+    @Then("Error message {string} returned")
+    public void errorMessageAppear(String expectedErrorMessge) throws UnsupportedEncodingException {
+        assertThat(result.getResponse().getContentAsString()).contains(expectedErrorMessge);
+    }
 }

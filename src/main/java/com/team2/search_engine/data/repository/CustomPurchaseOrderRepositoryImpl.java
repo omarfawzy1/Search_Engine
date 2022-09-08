@@ -2,7 +2,9 @@ package com.team2.search_engine.data.repository;
 
 
 
+import com.team2.search_engine.data.entity.PurchaseOrder;
 import com.team2.search_engine.data.model.SearchField;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
