@@ -15,7 +15,7 @@ Feature: Search for a PO with like (~) symbol
       | 2020000040 | Local Purchase Order   | 000002 - Sigewerk | --                                 | Signmedia     | Draft     |
 
   Scenario:Search for a PO with Code
-    When Operator requests for purchase orders with "Code" with query "PO with code ~ 2018"
+    When Operator requests for purchase orders with "Code" with query "PO with Code ~ 2018"
     Then the System Results Will Show as follows:
       | Code       | Type                  | Vendor            | Reference Document | Business Unit | State   |
       | 2018000001 | Import Purchase Order | 000003 - Zhejiang | --                 | Signmedia     | Cleared |
@@ -57,7 +57,7 @@ Feature: Search for a PO with like (~) symbol
       | 2020000047 | Service Purchase Order | 000002 - Zhejiang | Local Purchase Order - 2018000017  | Signmedia     | Confirmed |
 
   Scenario:Search for a PO with State
-    When Operator requests for purchase orders with "State" with query "PO with State ~  Ship"
+    When Operator requests for purchase orders with "State" with query "PO with State ~ Ship"
     Then the System Results Will Show as follows:
       | Code       | Type                 | Vendor            | Reference Document | Business Unit | State   |
       | 2020000048 | Local Purchase Order | 000002 - Zhejiang | --                 | Signmedia     | Shipped |

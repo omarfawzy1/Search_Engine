@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 public class QueryParserTest {
-    String validSearchQuery = "PO with Code = 20220001";
+    String validSearchQuery = "PO with CoDe = 20220001";
     String unValidTypeSearchQuery = "XO with Code = 20220001";
     @Autowired
     private ParsingService parsingService;
@@ -37,6 +37,7 @@ public class QueryParserTest {
         SearchField searchField = parsingService.parseQuery(validSearchQuery);
         //Assert
         Assertions.assertEquals(PurchaseOrder.class, searchField.getType());
+        Assertions.assertEquals("code", searchField.getField());
         //CleanUp
     }
 
