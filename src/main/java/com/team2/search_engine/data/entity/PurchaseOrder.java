@@ -1,6 +1,7 @@
 package com.team2.search_engine.data.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class PurchaseOrder {
@@ -10,12 +11,12 @@ public class PurchaseOrder {
         this.vendor = vendor;
     }
 
-    public PurchaseOrder(String code,String type, String vendor, String RD, String BU, String state) {
+    public PurchaseOrder(String code,String type, String vendor, String rd, String bu, String state) {
         this.code = code;
         this.type = type;
         this.vendor = vendor;
-        this.RD = RD;
-        this.BU = BU;
+        this.rd = rd;
+        this.bu = bu;
         this.state = state;
     }
 
@@ -23,8 +24,8 @@ public class PurchaseOrder {
     private String code;
     private String type;
     private String vendor;
-    private String RD;
-    private String BU;
+    private String rd;
+    private String bu;
     private String state;
 
     public String getCode() {
@@ -40,11 +41,11 @@ public class PurchaseOrder {
     }
 
     public String getRD() {
-        return RD;
+        return rd;
     }
 
     public String getBU() {
-        return BU;
+        return bu;
     }
 
     public String getState() {
@@ -52,7 +53,26 @@ public class PurchaseOrder {
     }
 
     @Override
-    public String toString(){
-        return String.format("%d %s %s",code, type, vendor);
+    public String toString() {
+        return "PurchaseOrder{" +
+                "code='" + code + '\'' +
+                ", type='" + type + '\'' +
+                ", vendor='" + vendor + '\'' +
+                ", rd='" + rd + '\'' +
+                ", bu='" + bu + '\'' +
+                ", state='" + state + '\'' + "} \n";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PurchaseOrder)) return false;
+        PurchaseOrder that = (PurchaseOrder) o;
+        return code.equals(that.code) && Objects.equals(type, that.type) && Objects.equals(vendor, that.vendor) && Objects.equals(rd, that.rd) && Objects.equals(bu, that.bu) && Objects.equals(state, that.state);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, type, vendor, rd, bu, state);
     }
 }

@@ -24,4 +24,8 @@ public class SearchController {
         List<?> results = searchService.find(query);
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
+    @GetMapping("/list")
+    public String test(){
+        return "test";
+    }
 }

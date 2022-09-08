@@ -13,6 +13,7 @@ Feature: Search for a PO with exact value using (=) symbol
       | 2018000001 | Import Purchase Order  | 000003 - Zhejiang | --                                 | Signmedia     | Cleared   |
       | 2018100006 | Local Purchase Order   | 000002 - Zhejiang | --                                 | Signmedia     | Draft     |
       | 2020000040 | Local Purchase Order   | 000002 - Sigewerk | --                                 | Signmedia     | Draft     |
+
   Scenario:Search for a PO with exact Code
     Given Operator is logged in
     When Operator requests for purchase orders with Code with query "PO with Code = 2020000048"
