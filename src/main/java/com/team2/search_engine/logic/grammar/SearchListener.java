@@ -17,6 +17,7 @@ public class SearchListener extends searchGrammarBaseListener {
                     .append(" ")
             ;
         }
+        if (value != null && value.length() != 0)
         value.setLength(value.length() - 1);
         searchField = new SearchField(
                 ctx.getChild(TYPE).getText().toLowerCase(),

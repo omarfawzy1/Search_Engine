@@ -45,8 +45,10 @@ public class QueryParserTest {
     @DisplayName("should throw exception when  invalid search type when you enter invalid query")
     void shouldThrowExceptionWhenInValidSearchType() {
         //Act && Assert
-        assertThrows(ParseCancellationException.class, () -> parsingService.parseQuery(unValidTypeSearchQuery));
+        Exception exception =assertThrows(ParseCancellationException.class, () -> parsingService.parseQuery(unValidTypeSearchQuery));
         //CleanUp
+        System.out.println(exception.getMessage());
+
     }
 
     @Test
