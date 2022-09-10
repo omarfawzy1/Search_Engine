@@ -1,4 +1,5 @@
-package com.team2.search_engine.logic.grammar;// Generated from D:/Work/search_engine_poc/src/main/antlr4\searchGrammar.g4 by ANTLR 4.10.1
+package com.team2.search_engine.logic.grammar;// Generated from D:/Work/Search_Engine_Backend/src/test/resources/design\searchGrammar.g4 by ANTLR 4.10.1
+
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**

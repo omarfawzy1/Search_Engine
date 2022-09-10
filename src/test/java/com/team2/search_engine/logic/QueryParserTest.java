@@ -12,12 +12,11 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 public class QueryParserTest {
-    String validSearchQuery = "PO with CoDe = 20220001";
+    String validSearchQuery = "PO with Business Unit = 20220001";
     String unValidTypeSearchQuery = "XO with Code = 20220001";
     @Autowired
     private ParsingService parsingService;
@@ -40,7 +39,25 @@ public class QueryParserTest {
         Assertions.assertEquals("code", searchField.getField());
         //CleanUp
     }
-
+    @Test
+    @DisplayName("should extract valid business unit  when you enter valid query")
+    void shouldExtractValidBusinessUnit() {
+        //Act
+        SearchField searchField = parsingService.parseQuery(validSearchQuery);
+        //Assert
+        Assertions.assertEquals("bs", searchField.getField());
+        //CleanUp
+    }
+    @Test
+    @DisplayName("should extract valid reference document  when you enter valid query")
+    void shouldExtractValidReferenceDocument() {
+        String query  = "Po with reference document = 555555";
+        //Act
+        SearchField searchField = parsingService.parseQuery(query);
+        //Assert
+        Assertions.assertEquals("rf", searchField.getField());
+        //CleanUp
+    }
     @Test
     @DisplayName("should throw exception when  invalid search type when you enter invalid query")
     void shouldThrowExceptionWhenInValidSearchType() {
@@ -80,4 +97,6 @@ public class QueryParserTest {
         Assertions.assertEquals("20220001", resultSearchField.getValue());
         //CleanUp
     }
+
+
 }

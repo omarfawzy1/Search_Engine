@@ -1,15 +1,9 @@
-package com.team2.search_engine.logic.grammar;// Generated from D:/Work/search_engine_poc/src/main/antlr4\searchGrammar.g4 by ANTLR 4.10.1
+package com.team2.search_engine.logic.grammar;// Generated from D:/Work/Search_Engine_Backend/src/test/resources/design\searchGrammar.g4 by ANTLR 4.10.1
 
-import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.atn.ATN;
-import org.antlr.v4.runtime.atn.ATNDeserializer;
-import org.antlr.v4.runtime.atn.ParserATNSimulator;
-import org.antlr.v4.runtime.atn.PredictionContextCache;
+import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
-import org.antlr.v4.runtime.tree.ParseTreeListener;
-import org.antlr.v4.runtime.tree.ParseTreeVisitor;
-import org.antlr.v4.runtime.tree.TerminalNode;
-
+import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.tree.*;
 import java.util.List;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
@@ -20,7 +14,8 @@ public class searchGrammarParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		TYPE=1, WITH=2, SEARCH_BY=3, SEARCH_OPERATOR=4, CODE=5, CRLF=6, WS=7;
+		TYPE=1, WITH=2, SEARCH_BY=3, SEARCH_OPERATOR=4, CODE=5, BusinessUnit=6, 
+		ReferenceDocument=7, CRLF=8, WS=9;
 	public static final int
 		RULE_search = 0;
 	private static String[] makeRuleNames() {
@@ -37,8 +32,8 @@ public class searchGrammarParser extends Parser {
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "TYPE", "WITH", "SEARCH_BY", "SEARCH_OPERATOR", "CODE", "CRLF", 
-			"WS"
+			null, "TYPE", "WITH", "SEARCH_BY", "SEARCH_OPERATOR", "CODE", "BusinessUnit", 
+			"ReferenceDocument", "CRLF", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -163,7 +158,7 @@ public class searchGrammarParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u0007\r\u0002\u0000\u0007\u0000\u0001\u0000\u0001\u0000\u0001"+
+		"\u0004\u0001\t\r\u0002\u0000\u0007\u0000\u0001\u0000\u0001\u0000\u0001"+
 		"\u0000\u0001\u0000\u0001\u0000\u0005\u0000\b\b\u0000\n\u0000\f\u0000\u000b"+
 		"\t\u0000\u0001\u0000\u0000\u0000\u0001\u0000\u0000\u0000\f\u0000\u0002"+
 		"\u0001\u0000\u0000\u0000\u0002\u0003\u0005\u0001\u0000\u0000\u0003\u0004"+

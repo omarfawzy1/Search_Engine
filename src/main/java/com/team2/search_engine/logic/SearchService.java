@@ -26,7 +26,6 @@ public class SearchService {
 
         }catch (ParseCancellationException ex)
         {
-            System.out.println("Error is "+ex.getMessage());
             throw new ParsingException(ex.getMessage());
         }
         List<?> searchResult = searchRepository.find(searchField);
