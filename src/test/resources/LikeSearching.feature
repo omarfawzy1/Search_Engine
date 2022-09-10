@@ -57,6 +57,8 @@ Feature: Search for a PO with like (~) symbol
       | 2020000045 | Service Purchase Order | 000001 - Zhejiang | Import Purchase Order - 2018000001 | Signmedia     | Confirmed |
       | 2020000048 | Local Purchase Order   | 000002 - Zhejiang | --                                 | Signmedia     | Shipped   |
       | 2020000047 | Service Purchase Order | 000002 - Zhejiang | Local Purchase Order - 2018000017  | Signmedia     | Confirmed |
+      | 2021000001 | Service Purchase Order | 000001 - Zhejiang | Local Purchase Order - 2018000017  | Signmedia     | Draft     |
+      | 2020000040 | Local Purchase Order   | 000002 - Sigewerk | --                                 | Signmedia     | Draft     |
 
   Scenario:Search for a PO with State
     When Operator requests for purchase orders with "State" with query "PO with State ~ Ship"
@@ -70,14 +72,19 @@ Feature: Search for a PO with like (~) symbol
     When Operator searches for query "<query>"
     Then Error message "<message>" returned
     Examples:
-      | query                 | message                                       |
-      | PO with Statte ~ ship | mismatched input 'Statte' expecting SEARCH_BY |
-      | po wit table = ship   | mismatched input 'wit' expecting WITH         |
-      | no with state ~ ship  | mismatched input 'no' expecting TYPE          |
-      |                       | mismatched input '<EOF>' expecting TYPE       |
-      | po state ~ ship       | missing WITH at 'state'                       |
-      | po with code ship     | missing SEARCH_OPERATOR at 'ship'             |
-      | po with code ! ship   | missing SEARCH_OPERATOR at 'ship'             |
+      | query                           | message                                       |
+      | PO with Statte ~ ship           | mismatched input 'Statte' expecting SEARCH_BY |
+      | po wit table = ship             | mismatched input 'wit' expecting WITH         |
+      | no with state ~ ship            | mismatched input 'no' expecting TYPE          |
+      |                                 | mismatched input '<EOF>' expecting TYPE       |
+      | po state ~ ship                 | missing WITH at 'state'                       |
+      | po with code ship               | missing SEARCH_OPERATOR at 'ship'             |
+      | po with code ! ship             | missing SEARCH_OPERATOR at 'ship'             |
+      | po with code BusinessUnit ship  | mis                                           |
+      | po with code bu ship            | mis                                           |
+      | po with code BusinessUnits ship | mis                                           |
+      | po with code Busines Unit ship  | mis                                           |
+
 
 #
 #  Scenario:Search for a PO and only one record matches
