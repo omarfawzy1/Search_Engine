@@ -11,9 +11,18 @@ public class SearchField {
 
     public SearchField(String type, String field, String operator, String value) {
         this.type = determineClassType(type);
-        this.field = field;
+        this.field = covertSearchType(field);
         this.operator = operator;
         this.value = value;
+    }
+
+    private String covertSearchType(String field) {
+        if (field.matches("[Bb][a-zA-Z ]*[Tt]")) {
+            return "bu";
+        } else if (field.matches("[Rr][a-zA-Z ]*[Tt]")) {
+            return "rd";
+        }
+        return field;
     }
 
 

@@ -11,7 +11,7 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/api/v1/search")
 public class SearchController {
-    private SearchService searchService;
+    private final SearchService searchService;
 
     public SearchController(SearchService searchService) {
         this.searchService = searchService;
