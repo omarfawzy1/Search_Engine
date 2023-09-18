@@ -1,0 +1,9 @@
+TYPE=1
+WITH=2
+SEARCH_BY=3
+SEARCH_OPERATOR=4
+CODE=5
+BusinessUnit=6
+ReferenceDocument=7
+CRLF=8
+WS=9
